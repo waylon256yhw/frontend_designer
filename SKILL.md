@@ -85,51 +85,52 @@ DESIGN DECISIONS:
 
 This forces intentionality and prevents convergence to defaults.
 
-### Phase 3: Implementation with Inline Teaching
+### Phase 3: Implementation with Targeted Teaching
 
-Generate code with embedded explanations. Every non-obvious decision gets a brief annotation.
+Generate clean code. **Only annotate concepts the user specifically asked about or struggled with in this turn.**
 
-**For HTML/CSS (zero-code users):**
+Do NOT:
+- Add comments to every line
+- Explain basics the user didn't ask about
+- Turn code into a textbook
+
+DO:
+- Keep code clean and readable by default
+- Add focused annotations ONLY for the specific feature/bug/concept the user mentioned
+- Explain design decisions briefly in prose before or after the code block, not inline
+
+**Example: User asks "how do I make items span multiple columns?"**
+
 ```html
-<!--
-  LAYOUT CONCEPT: CSS Grid
-  Grid lets us place items in 2D space. Think of it as
-  an invisible table that we define, then place items into.
--->
 <div class="dashboard-grid">
-  <!-- grid-column: 1 / 3 means "span from line 1 to line 3" -->
+  <!-- grid-column: 1 / 3 means "start at line 1, end at line 3" (spans 2 columns) -->
   <header style="grid-column: 1 / 3;">...</header>
+  <aside>...</aside>
+  <main>...</main>
 </div>
 ```
 
-**For React/Vue (low-code users):**
-```jsx
-// STATE CONCEPT: useState hook
-// State = data that, when changed, causes the UI to re-render
-// Here, `isOpen` controls whether the menu shows
-const [isOpen, setIsOpen] = useState(false);
-```
+Only the `grid-column` line gets annotated because that's what the user asked about. The rest stays clean.
 
-### Phase 4: Concept Reinforcement
+### Phase 4: Concept Reinforcement (Optional)
 
-After code delivery, provide a "What You Learned" summary:
+Only provide a "What You Learned" summary when introducing genuinely new concepts the user hadn't seen before. Skip this for routine code.
 
-```
-CONCEPTS INTRODUCED:
-- CSS Grid: 2D layout system (used for dashboard structure)
-- CSS Variables: Reusable values with --var-name syntax
-- @keyframes: Defining animation sequences
-- transform: GPU-accelerated visual changes
-```
+## Teaching Approach: On-Demand, Not Encyclopedic
 
-## Teaching Approach: Learn by Building
+### Core Principle: Respect Attention
+
+Users want working code, not lectures. Teaching should be:
+- **Triggered** by user questions, not assumed ignorance
+- **Surgical** — one concept at a time, where it matters
+- **Skippable** — design explanations in prose, not blocking code comments
 
 ### Terminology Introduction Pattern
 
-Introduce terms at the moment of use, not in advance:
+Explain terms only when the user asks or clearly doesn't know:
 
 ❌ "First, let me explain what flexbox is..."
-✅ "We'll use flexbox here - it's a 1D layout tool that distributes space along a single axis..."
+✅ (User asks: "why use flexbox here?") "Flexbox is a 1D layout tool — it distributes space along a single axis..."
 
 ### Complexity Adaptation
 
@@ -194,7 +195,7 @@ Before delivering any frontend, verify:
 - [ ] **Motion**: Purposeful animation or conscious decision to omit
 - [ ] **Interaction**: Tactile feedback (scale, glow) present
 - [ ] **Background**: Atmosphere created (grain, gradient), not flat solid color
-- [ ] **Teaching**: Key concepts explained in context
+- [ ] **Teaching**: User's specific questions answered (no unsolicited lectures)
 - [ ] **Accessibility**: Basic a11y (semantic HTML, sufficient contrast)
 
 ## Resources
