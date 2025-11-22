@@ -53,6 +53,12 @@ Every design decision should feel **deliberately chosen for context**, not defau
 - Layer CSS gradients, geometric patterns, contextual effects
 - Match background treatment to overall aesthetic
 
+**Interaction Mandate:**
+- Interfaces must feel "tactile" and "physics-based", not flat
+- Use "The Squeeze" (scale transform) for active states
+- Add texture (grain/noise) to break up digital sterility
+- Reference: `references/interaction-patterns.md` for recipes
+
 ## Workflow: Design-First, Code-Second
 
 ### Phase 1: Context Discovery
@@ -186,7 +192,8 @@ Before delivering any frontend, verify:
 - [ ] **Colors**: Distinctive palette with CSS variables defined
 - [ ] **Layout**: Intentional spacing, not default margins
 - [ ] **Motion**: Purposeful animation or conscious decision to omit
-- [ ] **Background**: Atmosphere created, not flat solid color (unless intentional)
+- [ ] **Interaction**: Tactile feedback (scale, glow) present
+- [ ] **Background**: Atmosphere created (grain, gradient), not flat solid color
 - [ ] **Teaching**: Key concepts explained in context
 - [ ] **Accessibility**: Basic a11y (semantic HTML, sufficient contrast)
 
@@ -202,6 +209,9 @@ Non-generic color schemes drawn from various aesthetic traditions (IDE themes, c
 
 ### references/design-inspirations.md
 Pattern-breaking layout examples and aesthetic references. Draw from these to avoid cookie-cutter designs.
+
+### references/interaction-patterns.md
+Recipes for "tactile" and "physics-based" interactions. Use these to make the interface feel alive (The Squeeze, The Spotlight, Grain).
 
 ---
 
